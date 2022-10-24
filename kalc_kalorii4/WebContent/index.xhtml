@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Kalkulator Kalorii</title>
+</h:head>
+<h:body>
+	<p:panel header="Kalkulator zapotrzebowania kalorycznego" style="margin: 20px auto">
+		<h:form id="bla">
+			<h:panelGrid id="grid" columns="3" cellpadding="5" >
+			
+		  		<p:outputLabel value="Wiek:"/>
+		  		<p:inputText value="#{kalorieBB.wiek}" required="true" requiredMessage="Nie podano wieku!" validatorMessage="Wiek musi być między 15 a 100" id="wiek">
+		  			<f:validateLongRange minimum="15" maximum="100"/>
+		  		</p:inputText>
+				<p:message for="wiek" styleClass="error"/>
+				
+		  		<p:outputLabel value="Waga:"/>
+		  		<p:inputText value="#{kalorieBB.waga}" required="true" requiredMessage="Nie podano wagi!" validatorMessage="Waga musi być między 30 a 200" id="waga">
+		  			<f:validateLongRange minimum="30" maximum="200"/>
+		  		</p:inputText>
+		  		<p:message for="waga" />
+		  		
+		  		<p:outputLabel value="Wzrost:"/>
+		  		<p:inputText value="#{kalorieBB.wzrost}" required="true" requiredMessage="Nie podano wzrostu!" validatorMessage="Wzrost musi być między 100 a 220" id="wzrost">
+					<f:validateLongRange minimum="100" maximum="220"/>
+				</p:inputText>
+				<p:message for="wzrost" />
+				
+				<p:outputLabel value="Płeć:"/>
+				<p:selectOneMenu id="plec" value = "#{kalorieBB.plec}"> 
+		   			<f:selectItem itemValue = "mezczyzna" itemLabel = "Mężczyzna" /> 
+		   			<f:selectItem itemValue = "kobieta" itemLabel = "Kobieta" /> 
+				</p:selectOneMenu> 
+				<br/>
+				<p:commandButton value="Policz" action="#{kalorieBB.calc_AJAX()}" update="msg" />
+			</h:panelGrid>
+			<p:messages id="msg" />
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
